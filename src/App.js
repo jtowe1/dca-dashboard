@@ -1,10 +1,10 @@
 import './App.css';
 import SimpleValuation from './SimpleValuation';
 import DcaCalculator from './service/DcaCalculator';
-import { createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
+import { createTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
 
 function App() {
-  const theme = createMuiTheme({
+  const theme = createTheme({
     palette: {
       type: 'dark',
     },
