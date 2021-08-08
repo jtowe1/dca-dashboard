@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, Grid, makeStyles } from '@material-ui/core';
+import DcaCalculatorService from './service/DcaCalculator';
 
 const useStyles = makeStyles({
   root: {
@@ -8,7 +9,27 @@ const useStyles = makeStyles({
 });
 
 const SimpleValuation = (props) => {
+  const [investmentAmount, setInvestmentAmount] = useState(0);
+  const [currentValue, setCurrentValue] = useState(0);
+  const [possibleGrowthPercent, setPossibleGrowthPercent] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setInvestmentAmount(await DcaCalculatorService.getInvestmentAmount());
+      setCurrentValue(await DcaCalculatorService.getCurrentValue());
+      setPossibleGrowthPercent(await DcaCalculatorService.getPossibleGrowthPercent());
+    }
+    fetchData();
+  }, []);
+
   const classes = useStyles();
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+
   return (
     <React.Fragment>
       <Card className={classes.root} variant="outlined">
@@ -16,17 +37,17 @@ const SimpleValuation = (props) => {
           <Grid container spacing={3}>
             <Grid item xs>
               <Typography>
-                Investment Amount : {props.investmentAmount}
+                Investment Amount : {formatter.format(investmentAmount)}
               </Typography>
             </Grid>
             <Grid item xs>
               <Typography>
-                Current Value : {props.currentValue}
+                Current Value : {formatter.format(currentValue)}
               </Typography>
             </Grid>
             <Grid item xs>
               <Typography>
-                Possible Growth : {props.possibleGrowthPercent}%
+                Possible Growth : {possibleGrowthPercent}%
               </Typography>
             </Grid>
           </Grid>
