@@ -1,38 +1,46 @@
 import Papa from 'papaparse';
 
-const DcaCalculatorService = {
-  getInvestmentAmount: async () => {
-    const rows = await DcaCalculatorService.getData();
-    let investmentAmount = 0;
+const getData = async () => {
+  console.log('GETTING DATA');
+  const response = await fetch('/data/transfers.csv');
+  const reader = response.body.getReader();
+  const result = await reader.read();
+  const decoder = new TextDecoder('utf-8');
+  const csv = decoder.decode(result.value);
 
-    rows.data.forEach((item, index) => {
-      if (item[0] === 'purchase') {
-        investmentAmount += parseInt(item[3]);
-      }
-    });
+  const data = Papa.parse(csv);
+  return data;
+}
 
-    return investmentAmount;
-  },
+export const getCurrentValue = async () => {
+  const btcValue = 43728.48;
+  const rows = await getData();
+  let currentValue = 0;
 
-  getCurrentValue: async () => {
-    return 7;
-  },
+  rows.data.forEach((item) => {
+    if (item[0] === 'purchase') {
+      const amountPurchasedInBtc = parseFloat(item[4]);
+      const currentValueOfPurchase = amountPurchasedInBtc * btcValue;
+      currentValue += parseFloat(currentValueOfPurchase);
+    }
+  });
 
-  getPossibleGrowthPercent: async () => {
-    return 2;
-  },
+  return currentValue;
+}
 
-  getData: async () => {
-    console.log('GETTING DATA');
-    const response = await fetch('/data/transfers.csv');
-    const reader = response.body.getReader();
-    const result = await reader.read();
-    const decoder = new TextDecoder('utf-8');
-    const csv = decoder.decode(result.value);
+export const getInvestmentAmount = async () => {
+  const rows = await getData();
+  let investmentAmount = 0.0;
 
-    const data = Papa.parse(csv);
-    return data;
-  }
-};
+  rows.data.forEach((item) => {
+    if (item[0] === 'purchase') {
+      investmentAmount += parseFloat(item[3]);
+    }
+  });
 
-export default DcaCalculatorService;
+  return investmentAmount;
+}
+
+export const getPossibleGrowthPercent = async () => {
+  return 2;
+}
