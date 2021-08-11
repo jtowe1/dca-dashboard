@@ -1,4 +1,5 @@
 import Papa from 'papaparse';
+import { getBitcoinPrice } from './BitcoinPrice';
 
 const getData = async () => {
   console.log('GETTING DATA');
@@ -13,7 +14,7 @@ const getData = async () => {
 }
 
 export const getCurrentValue = async () => {
-  const btcValue = 43728.48;
+  const btcValue = await getBitcoinPrice();
   const rows = await getData();
   let currentValue = 0;
 
