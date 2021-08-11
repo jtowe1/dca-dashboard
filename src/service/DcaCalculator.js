@@ -1,7 +1,7 @@
 import Papa from 'papaparse';
 import { getBitcoinPrice } from './BitcoinPrice';
 
-const getData = async () => {
+export const getData = async () => {
   console.log('GETTING DATA');
   const response = await fetch('/data/transfers.csv');
   const reader = response.body.getReader();
@@ -13,9 +13,8 @@ const getData = async () => {
   return data;
 }
 
-export const getCurrentValue = async () => {
+export const getCurrentValue = async (rows) => {
   const btcValue = await getBitcoinPrice();
-  const rows = await getData();
   let currentValue = 0;
 
   rows.data.forEach((item) => {
@@ -29,8 +28,7 @@ export const getCurrentValue = async () => {
   return currentValue;
 }
 
-export const getInvestmentAmount = async () => {
-  const rows = await getData();
+export const getInvestmentAmount = (rows) => {
   let investmentAmount = 0.0;
 
   rows.data.forEach((item) => {
@@ -42,8 +40,7 @@ export const getInvestmentAmount = async () => {
   return investmentAmount;
 }
 
-export const getPossibleGrowthPercent = async () => {
-  const possibleGrowthPercent = (await getCurrentValue() - await getInvestmentAmount()) / await getInvestmentAmount();
-  console.log(possibleGrowthPercent);
+export const getPossibleGrowthPercent = (investmentAmount, currentValue) => {
+  const possibleGrowthPercent = (currentValue - investmentAmount) / investmentAmount;
   return (possibleGrowthPercent * 100).toFixed(2);
 }

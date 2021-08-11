@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, Grid, makeStyles } from '@material-ui/core';
-import { getCurrentValue, getInvestmentAmount, getPossibleGrowthPercent } from './service/DcaCalculator';
+import { getCurrentValue, getData, getInvestmentAmount, getPossibleGrowthPercent } from './service/DcaCalculator';
 
 const useStyles = makeStyles({
   root: {
@@ -15,9 +15,16 @@ const SimpleValuation = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setInvestmentAmount(await getInvestmentAmount());
-      setCurrentValue(await getCurrentValue());
-      setPossibleGrowthPercent(await getPossibleGrowthPercent());
+      const data = await getData();
+
+      const investmentAmount = getInvestmentAmount(data);
+      setInvestmentAmount(investmentAmount);
+
+      const currentValue = await getCurrentValue(data);
+      setCurrentValue(currentValue);
+
+      const possibleGrowthPercent = getPossibleGrowthPercent(investmentAmount, currentValue);
+      setPossibleGrowthPercent(possibleGrowthPercent);
     }
     fetchData();
   }, []);
