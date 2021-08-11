@@ -43,5 +43,7 @@ export const getInvestmentAmount = async () => {
 }
 
 export const getPossibleGrowthPercent = async () => {
-  return 2;
+  const possibleGrowthPercent = (await getCurrentValue() - await getInvestmentAmount()) / await getInvestmentAmount();
+  console.log(possibleGrowthPercent);
+  return (possibleGrowthPercent * 100).toFixed(2);
 }
