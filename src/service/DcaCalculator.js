@@ -11,7 +11,7 @@ export const getData = async () => {
 
   const data = Papa.parse(csv);
   return data;
-}
+};
 
 export const getCurrentValue = async (rows) => {
   const btcValue = await getBitcoinPrice();
@@ -26,7 +26,7 @@ export const getCurrentValue = async (rows) => {
   });
 
   return currentValue;
-}
+};
 
 export const getInvestmentAmount = (rows) => {
   let investmentAmount = 0.0;
@@ -38,9 +38,10 @@ export const getInvestmentAmount = (rows) => {
   });
 
   return investmentAmount;
-}
+};
 
 export const getPossibleGrowthPercent = (investmentAmount, currentValue) => {
-  const possibleGrowthPercent = (currentValue - investmentAmount) / investmentAmount;
+  const possibleGrowthPercent =
+    (currentValue - investmentAmount) / investmentAmount;
   return (possibleGrowthPercent * 100).toFixed(2);
-}
+};

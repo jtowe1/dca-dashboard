@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Typography, Grid, makeStyles } from '@material-ui/core';
-import { getCurrentValue, getData, getInvestmentAmount, getPossibleGrowthPercent } from './service/DcaCalculator';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Grid,
+  makeStyles,
+} from '@material-ui/core';
+import {
+  getCurrentValue,
+  getData,
+  getInvestmentAmount,
+  getPossibleGrowthPercent,
+} from './service/DcaCalculator';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 1600,
-  }
+  },
 });
 
 const SimpleValuation = (props) => {
@@ -23,9 +34,12 @@ const SimpleValuation = (props) => {
       const currentValue = await getCurrentValue(data);
       setCurrentValue(currentValue);
 
-      const possibleGrowthPercent = getPossibleGrowthPercent(investmentAmount, currentValue);
+      const possibleGrowthPercent = getPossibleGrowthPercent(
+        investmentAmount,
+        currentValue
+      );
       setPossibleGrowthPercent(possibleGrowthPercent);
-    }
+    };
     fetchData();
   }, []);
 
@@ -55,7 +69,7 @@ const SimpleValuation = (props) => {
         </CardContent>
       </Card>
     </React.Fragment>
-  )
+  );
 };
 
 export default SimpleValuation;
