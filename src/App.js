@@ -1,5 +1,5 @@
 import './App.css';
-import SimpleValuation from './SimpleValuation';
+import SimpleValuationContainer from './container/SimpleValuationContainer';
 import { createTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline>
-        <SimpleValuation />
+        <SimpleValuationContainer />
       </CssBaseline>
     </ThemeProvider>
   );

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   Card,
   CardContent,
-  Typography,
   Grid,
   makeStyles,
 } from '@material-ui/core';
@@ -11,7 +10,8 @@ import {
   getData,
   getInvestmentAmount,
   getPossibleGrowthPercent,
-} from './service/DcaCalculator';
+} from '../service/DcaCalculator';
+import LeftRightValue from '../component/LeftRightValue';
 
 const useStyles = makeStyles({
   root: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SimpleValuation = (props) => {
+const SimpleValuationContainer = (props) => {
   const [investmentAmount, setInvestmentAmount] = useState(0.0);
   const [currentValue, setCurrentValue] = useState(0.0);
   const [possibleGrowthPercent, setPossibleGrowthPercent] = useState(0);
@@ -51,19 +51,22 @@ const SimpleValuation = (props) => {
         <CardContent>
           <Grid container spacing={3}>
             <Grid item xs>
-              <Typography>
-                Investment Amount : ${Math.trunc(investmentAmount * 100) / 100}
-              </Typography>
+              <LeftRightValue
+                left="Investment Amount"
+                right={"$" + Math.trunc(investmentAmount * 100) / 100}
+              />
             </Grid>
             <Grid item xs>
-              <Typography>
-                Current Value : ${Math.trunc(currentValue * 100) / 100}
-              </Typography>
+              <LeftRightValue
+                left="Current Value"
+                right={"$" + Math.trunc(currentValue * 100) / 100}
+              />
             </Grid>
             <Grid item xs>
-              <Typography>
-                Possible Growth : {possibleGrowthPercent}%
-              </Typography>
+              <LeftRightValue
+                left="Possible Growth"
+                right={possibleGrowthPercent + "%"}
+              />
             </Grid>
           </Grid>
         </CardContent>
@@ -72,4 +75,4 @@ const SimpleValuation = (props) => {
   );
 };
 
-export default SimpleValuation;
+export default SimpleValuationContainer;
