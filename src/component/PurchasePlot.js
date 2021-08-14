@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Label } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Label } from 'recharts';
 import { getBitcoinPrice } from '../service/BitcoinPrice';
 import { getPurchases } from '../service/DcaPurchases';
 
@@ -18,14 +18,13 @@ const PurchasePlot = () => {
   const renderLineChart = (
     <LineChart width={1600} height={500} data={purchases}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-      <CartesianGrid />
-      <XAxis dataKey="Date" />
-      <YAxis dataKey="BtcPurchasePrice"/>
+      <XAxis stroke="white" dataKey="Date" />
+      <YAxis stroke="white" dataKey="BtcPurchasePrice"/>
       <Tooltip />
       <Legend />
       <Line type="monotone" dataKey="BtcPurchasePrice" stroke="#8884d8" />
-      <ReferenceLine y={currentBtcPrice} stroke="blue">
-        <Label value="Current BTC Price" position="top" />
+      <ReferenceLine y={currentBtcPrice} stroke="green">
+        <Label fill="green" value="Current BTC Price" position="top" />
       </ReferenceLine>
     </LineChart>
   );
