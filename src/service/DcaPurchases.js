@@ -19,10 +19,10 @@ export const getPurchases = async () => {
   rows.data.forEach((item) => {
     if (item[0] === 'purchase') {
       const newPurchase = {
-        date: item[1],
-        usd: item[3],
-        btc: item[4],
-        btcPrice: item[5]
+        Date: item[1],
+        USDCost: item[3],
+        AmountOfBtc: item[4],
+        BtcPurchasePrice: item[5]
       };
       purchases.push(newPurchase);
     }
