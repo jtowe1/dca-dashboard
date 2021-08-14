@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
 function App() {
   const theme = createTheme({
     palette: {
-      type: 'light',
+      type: 'dark',
     },
   });
 
