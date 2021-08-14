@@ -19,7 +19,7 @@ export const getPurchases = async () => {
   rows.data.forEach((item) => {
     if (item[0] === 'purchase') {
       const newPurchase = {
-        Date: item[1],
+        Date: new Intl.DateTimeFormat('en').format( new Date(item[1])),
         USDCost: item[3],
         AmountOfBtc: item[4],
         BtcPurchasePrice: item[5]
