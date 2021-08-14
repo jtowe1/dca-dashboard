@@ -5,7 +5,7 @@ import { ThemeProvider, CssBaseline, Switch, FormControlLabel, createTheme } fro
 import { useState } from 'react';
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(true);
   const purchaseLineColor = darkTheme ? '#8884d8' : 'blue';
   const axisColor = darkTheme ? 'white' : 'black';
   const palletType = darkTheme ? 'dark' : 'light';
