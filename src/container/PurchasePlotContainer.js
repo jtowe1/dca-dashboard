@@ -1,3 +1,4 @@
+import { useTheme } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import {
   LineChart,
@@ -13,6 +14,7 @@ import { getBitcoinPrice } from '../service/BitcoinPrice';
 import { getPurchases } from '../service/DcaPurchases';
 
 const PurchasePlotContainer = () => {
+  const theme = useTheme();
   const [purchases, setPurchases] = useState([]);
   const [currentBtcPrice, setCurrentBtcPrice] = useState(0.0);
 
@@ -39,14 +41,14 @@ const PurchasePlotContainer = () => {
       data={purchases}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
-      <XAxis stroke="white" dataKey="Date" />
-      <YAxis stroke="white" dataKey="BtcPurchasePrice" />
+      <XAxis stroke={theme.axisColor} dataKey="Date" />
+      <YAxis stroke={theme.axisColor} dataKey="BtcPurchasePrice" />
       <Tooltip />
       <Legend />
-      <Line type="monotone" dataKey="BtcPurchasePrice" stroke="#8884d8" />
-      <ReferenceLine y={currentBtcPrice} stroke="green">
+      <Line type="monotone" dataKey="BtcPurchasePrice" stroke={theme.purchaseLineColor} />
+      <ReferenceLine y={currentBtcPrice} stroke={theme.referenceLineColor}>
         <Label
-          fill="green"
+          fill={theme.referenceLineTextColor}
           value={`Current BTC Price (${formattedCurrentBtcPrice()})`}
           position="top"
         />
