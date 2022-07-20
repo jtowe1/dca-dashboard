@@ -19,10 +19,10 @@ const useStyles = makeStyles({
   },
 });
 
-const SimpleValuationContainer = (props) => {
+const SimpleValuationContainer = () => {
   const [investmentAmount, setInvestmentAmount] = useState(0.0);
   const [currentValue, setCurrentValue] = useState(0.0);
-  const [possibleGrowthPercent, setPossibleGrowthPercent] = useState(0);
+  const [possibleGrowthPercent, setPossibleGrowthPercent] = useState('');
 
   const csv = usePurchases();
 
