@@ -53,13 +53,13 @@ const SimpleValuationContainer = (props) => {
             <Grid item xs>
               <LeftRightValue
                 left="Investment Amount"
-                right={"$" + Math.trunc(investmentAmount * 100) / 100}
+                right={"$" + Math.trunc(investmentAmount)}
               />
             </Grid>
             <Grid item xs>
               <LeftRightValue
                 left="Current Value"
-                right={"$" + Math.trunc(currentValue * 100) / 100}
+                right={"$" + Math.trunc(currentValue)}
               />
             </Grid>
             <Grid item xs>
