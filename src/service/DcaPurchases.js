@@ -20,9 +20,9 @@ export const getPurchases = async () => {
     if (item[0] === 'purchase') {
       const newPurchase = {
         Date: new Intl.DateTimeFormat('en').format( new Date(item[1])),
-        USDCost: item[3],
-        AmountOfBtc: item[4],
-        BtcPurchasePrice: item[5]
+        USDCost: item[4],
+        AmountOfBtc: item[5],
+        BtcPurchasePrice: item[7]
       };
       purchases.push(newPurchase);
     }
