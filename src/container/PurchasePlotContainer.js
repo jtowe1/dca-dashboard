@@ -10,21 +10,29 @@ import {
   ReferenceLine,
   Label,
 } from 'recharts';
+import { usePurchases } from '../context/PurchasesContext';
 import { getBitcoinPrice } from '../service/BitcoinPrice';
-import { getPurchases } from '../service/DcaPurchases';
 
 const PurchasePlotContainer = () => {
   const theme = useTheme();
   const [purchases, setPurchases] = useState([]);
   const [currentBtcPrice, setCurrentBtcPrice] = useState(0.0);
 
+  const csv = usePurchases();
+
+  const fetchData = async () => {
+    const purchases = csv.Rows.filter((row) => {
+      return row.Event === 'purchase';
+    })
+    setPurchases(purchases);
+    setCurrentBtcPrice(await getBitcoinPrice());
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      setPurchases(await getPurchases());
-      setCurrentBtcPrice(await getBitcoinPrice());
-    };
-    fetchData();
-  }, []);
+    if (!csv.Loading) {
+      fetchData();
+    }
+  }, [csv.Loading]);
 
   const formattedCurrentBtcPrice = () => {
     const formatter = new Intl.NumberFormat('en-US', {
@@ -42,10 +50,10 @@ const PurchasePlotContainer = () => {
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
       <XAxis stroke={theme.axisColor} dataKey="Date" />
-      <YAxis stroke={theme.axisColor} dataKey="BtcPurchasePrice" />
+      <YAxis stroke={theme.axisColor} dataKey="BTCPrice" />
       <Tooltip />
       <Legend />
-      <Line type="monotone" dataKey="BtcPurchasePrice" stroke={theme.purchaseLineColor} />
+      <Line type="monotone" dataKey="BTCPrice" stroke={theme.purchaseLineColor} />
       <ReferenceLine y={currentBtcPrice} stroke={theme.referenceLineColor}>
         <Label
           fill={theme.referenceLineTextColor}
