@@ -3,6 +3,7 @@ import SimpleValuationContainer from './container/SimpleValuationContainer';
 import PurchasePlotContainer from './container/PurchasePlotContainer';
 import { ThemeProvider, CssBaseline, Switch, FormControlLabel, createTheme, Grid } from '@material-ui/core';
 import { useState } from 'react';
+import { PurchasesProvider } from './context/PurchasesContext';
 
 function App() {
   const [darkTheme, setDarkTheme] = useState(true);
@@ -39,12 +40,14 @@ function App() {
               }
               label="Dark Mode"/>
           </Grid>
-          <Grid item xs={12}>
-            <PurchasePlotContainer />
-          </Grid>
-          <Grid item xs={12}>
-            <SimpleValuationContainer />
-          </Grid>
+          <PurchasesProvider>
+            <Grid item xs={12}>
+              <PurchasePlotContainer />
+            </Grid>
+            <Grid item xs={12}>
+              <SimpleValuationContainer />
+            </Grid>
+          </PurchasesProvider>
         </Grid>
 
       </CssBaseline>
