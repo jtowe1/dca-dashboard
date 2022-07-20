@@ -22,8 +22,8 @@ export const getCurrentValue = async (rows: ISwanCsvRow[]) => {
 
   rows.forEach((item) => {
     if (item.Event === 'purchase') {
-      const currentValueOfPurchase = +item.UnitCount * btcValue;
-      currentValue += +currentValueOfPurchase;
+      const currentValueOfPurchase = item.UnitCount * btcValue;
+      currentValue += currentValueOfPurchase;
     }
   });
 
@@ -35,7 +35,7 @@ export const getInvestmentAmount = (rows: ISwanCsvRow[]) => {
 
   rows.forEach((item) => {
     if (item.Event === 'purchase') {
-      investmentAmount += +item.USD;
+      investmentAmount += item.USD;
     }
   });
 

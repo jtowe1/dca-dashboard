@@ -21,13 +21,12 @@ export const PurchasesProvider: React.FC = ({ children }) => {
       const csvRow: ISwanCsvRow = {
         Event: value['Event'],
         Date: value['Date'],
-        USD: value['USD'],
-        UnitCount: value['Unit Count'],
-        BTCPrice: value['BTC Price']
+        USD: parseFloat(value['USD']),
+        UnitCount: parseFloat(value['Unit Count']),
+        BTCPrice: parseFloat(value['BTC Price'])
       }
       return csvRow;
     });
-
 
     const purchases: ISwanCsv = {
       Headers: fields ?? [],
