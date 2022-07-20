@@ -12,10 +12,12 @@ import {
 } from 'recharts';
 import { usePurchases } from '../context/PurchasesContext';
 import { getBitcoinPrice } from '../service/BitcoinPrice';
+import { ISwanCsvRow } from '../types/swancsv';
+import { ITheme } from '../types/theme';
 
 const PurchasePlotContainer = () => {
-  const theme = useTheme();
-  const [purchases, setPurchases] = useState([]);
+  const theme = useTheme<ITheme>();
+  const [purchases, setPurchases] = useState<ISwanCsvRow[]>([]);
   const [currentBtcPrice, setCurrentBtcPrice] = useState(0.0);
 
   const csv = usePurchases();
@@ -23,7 +25,7 @@ const PurchasePlotContainer = () => {
   const fetchData = async () => {
     const purchases = csv.Rows.filter((row) => {
       return row.Event === 'purchase';
-    })
+    });
     setPurchases(purchases);
     setCurrentBtcPrice(await getBitcoinPrice());
   };
