@@ -19,7 +19,7 @@ export const getCurrentValue = async (rows) => {
 
   rows.data.forEach((item) => {
     if (item[0] === 'purchase') {
-      const amountPurchasedInBtc = parseFloat(item[4]);
+      const amountPurchasedInBtc = parseFloat(item[5]);
       const currentValueOfPurchase = amountPurchasedInBtc * btcValue;
       currentValue += parseFloat(currentValueOfPurchase);
     }
@@ -33,7 +33,7 @@ export const getInvestmentAmount = (rows) => {
 
   rows.data.forEach((item) => {
     if (item[0] === 'purchase') {
-      investmentAmount += parseFloat(item[3]);
+      investmentAmount += parseFloat(item[4]);
     }
   });
 
