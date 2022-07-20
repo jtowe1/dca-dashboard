@@ -26,28 +26,22 @@ const SimpleValuationContainer = (props) => {
 
   const csv = usePurchases();
 
-  const fetchCurrentValue = async () => {
-    setCurrentValue(await getCurrentValue(csv.Rows));
-  }
+  const getAmounts = async () => {
+    const currentValue = await getCurrentValue(csv.Rows)
+    setCurrentValue(currentValue);
 
-  const fetchInvestmentAmount = () => {
-    setInvestmentAmount(getInvestmentAmount(csv.Rows));
-  }
+    const investmentAmount = getInvestmentAmount(csv.Rows);
+    setInvestmentAmount(investmentAmount);
 
-  const fetchPossibleGrowthPercent = () => {
-    setPossibleGrowthPercent(
-      getPossibleGrowthPercent(
-        investmentAmount,
-        currentValue
-      )
-    )
+    const possibleGrowthPercent = getPossibleGrowthPercent(investmentAmount, currentValue);
+    setPossibleGrowthPercent(possibleGrowthPercent);
   }
 
   useEffect(() => {
-    fetchInvestmentAmount();
-    fetchCurrentValue();
-    fetchPossibleGrowthPercent();
-  }, [csv.Rows]);
+    if (!csv.Loading) {
+      getAmounts();
+    }
+  }, [csv.Loading]);
 
   const classes = useStyles();
 
