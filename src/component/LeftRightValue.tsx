@@ -1,7 +1,12 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
 
-const LeftRightValue = ({ left, right }) => {
+interface ILeftRightValueProps {
+  left: string;
+  right: string;
+}
+
+const LeftRightValue: React.FC<ILeftRightValueProps> = ({ left, right }) => {
   return (
     <Typography>
       {left} : {right}
