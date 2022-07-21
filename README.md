@@ -18,10 +18,10 @@ The site expects a csv file to be here
 
 And have this structure
 ```csv
-Event,Date,Timezone,Status,USD,Unit Count,Asset Type,BTC Price
-purchase,2021-03-18 16:51:02+00,UTC,settled,50.00,0.00083946,BTC,59562.10
-purchase,2021-03-25 17:03:14+00,UTC,settled,50.00,0.00097714,BTC,51169.74
-purchase,2021-04-01 17:13:07+00,UTC,settled,50.00,0.00085221,BTC,58670.98
+Event,Date,Timezone,USD,Unit Count,BTC Price
+purchase,2021-03-18 16:51:02+00,UTC,50.00,0.00083946,59562.10
+purchase,2021-03-25 17:03:14+00,UTC,50.00,0.00097714,51169.74
+purchase,2021-04-01 17:13:07+00,UTC,50.00,0.00085221,58670.98
 ```
 
 Note: If you use the Swan Bitcoin DCA service, the csv you can download is already in this format.
