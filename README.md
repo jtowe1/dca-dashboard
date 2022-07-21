@@ -32,7 +32,7 @@ Note: If you use the Swan Bitcoin DCA service, the csv you can download is alrea
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-<img width="1618" alt="Screen Shot 2022-07-21 at 5 46 22 PM" src="https://user-images.githubusercontent.com/62212326/180320895-e8475e34-4148-477c-9608-a57690de86d1.png">
+<img width="1601" alt="Screen Shot 2022-07-21 at 6 36 32 PM" src="https://user-images.githubusercontent.com/62212326/180326686-0193bf9d-79ab-480d-b6ec-6a8dab37d38a.png">
 
-<img width="1625" alt="Screen Shot 2022-07-21 at 5 45 56 PM" src="https://user-images.githubusercontent.com/62212326/180320921-89e80e69-c692-4340-aaa5-5adcfb0d9582.png">
+<img width="1603" alt="Screen Shot 2022-07-21 at 6 36 21 PM" src="https://user-images.githubusercontent.com/62212326/180326654-bba80820-a1d4-4585-8955-b6a61b255977.png">
 
