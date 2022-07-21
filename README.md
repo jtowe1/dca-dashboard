@@ -4,16 +4,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Setup
 
-### Clone the project
+### Setup the project
 
-`git clone https://github.com/jtowe1/dca-dashboard.git`
+```bash
+git clone https://github.com/jtowe1/dca-dashboard.git
+cd dca-dashboard
+npm install
+```
 
 ### Setup the data
 The site expects a csv file to be here
 `public/data/transfers.csv`
 
 And have this structure
-```
+```csv
 Event,Date,Timezone,Status,USD,Unit Count,Asset Type,BTC Price
 purchase,2021-03-18 16:51:02+00,UTC,settled,50.00,0.00083946,BTC,59562.10
 purchase,2021-03-25 17:03:14+00,UTC,settled,50.00,0.00097714,BTC,51169.74
