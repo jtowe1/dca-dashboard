@@ -20,7 +20,7 @@ export const PurchasesProvider: React.FC = ({ children }) => {
     const rows = data.map((value: { [x: string]: any; }) => {
       const csvRow: ISwanCsvRow = {
         Event: value['Event'],
-        Date: value['Date'],
+        Date: new Date(value['Date']),
         USD: parseFloat(value['USD']),
         UnitCount: parseFloat(value['Unit Count']),
         BTCPrice: parseFloat(value['BTC Price'])

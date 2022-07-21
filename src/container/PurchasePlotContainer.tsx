@@ -44,6 +44,10 @@ const PurchasePlotContainer = () => {
     return formatter.format(currentBtcPrice);
   };
 
+  const formatDate = (date: Date) => {
+    return new Date(date).toLocaleDateString('en-US');
+  }
+
   return (
     <LineChart
       width={1600}
@@ -51,8 +55,8 @@ const PurchasePlotContainer = () => {
       data={purchases}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
-      <XAxis stroke={theme.axisColor} dataKey="Date" />
-      <YAxis stroke={theme.axisColor} dataKey="BTCPrice" />
+      <XAxis stroke={theme.axisColor} dataKey="Date" interval="preserveStartEnd" tickFormatter={formatDate}/>
+      <YAxis stroke={theme.axisColor} dataKey="BTCPrice"/>
       <Tooltip />
       <Legend />
       <Line type="monotone" dataKey="BTCPrice" stroke={theme.purchaseLineColor} />
