@@ -1,5 +1,5 @@
 import { useTheme } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -22,19 +22,19 @@ const PurchasePlotContainer = () => {
 
   const csv = usePurchases();
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     const purchases = csv.Rows.filter((row) => {
       return row.Event === 'purchase';
     });
     setPurchases(purchases);
     setCurrentBtcPrice(await getBitcoinPrice());
-  };
+  }, [csv.Rows]);
 
   useEffect(() => {
     if (!csv.Loading) {
       fetchData();
     }
-  }, [csv.Loading]);
+  }, [csv.Loading, fetchData]);
 
   const formattedCurrentBtcPrice = () => {
     const formatter = new Intl.NumberFormat('en-US', {

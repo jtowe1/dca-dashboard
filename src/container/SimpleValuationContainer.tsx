@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -26,7 +26,8 @@ const SimpleValuationContainer = () => {
 
   const csv = usePurchases();
 
-  const getAmounts = async () => {
+
+  const getAmounts = useCallback(async () => {
     const currentValue = await getCurrentValue(csv.Rows)
     setCurrentValue(currentValue);
 
@@ -35,13 +36,13 @@ const SimpleValuationContainer = () => {
 
     const possibleGrowthPercent = getPossibleGrowthPercent(investmentAmount, currentValue);
     setPossibleGrowthPercent(possibleGrowthPercent);
-  }
+  }, [csv.Rows]);
 
   useEffect(() => {
     if (!csv.Loading) {
       getAmounts();
     }
-  }, [csv.Loading]);
+  }, [csv.Loading, getAmounts]);
 
   const classes = useStyles();
 
